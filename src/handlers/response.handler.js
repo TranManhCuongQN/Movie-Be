@@ -10,7 +10,7 @@ const error = (res) =>
 const badRequest = (res, message) =>
   responseWithData(res, 400, {
     status: 400,
-    message,
+    message: message,
   });
 
 const OK = (res, data) => responseWithData(res, 200, data);

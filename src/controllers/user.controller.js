@@ -7,8 +7,9 @@ const signup = async (req, res) => {
     const { username, password, displayName } = req.body;
     const checkUser = await userModel.findOne({ username });
 
-    if (checkUser)
-      return responseHandler.badRequest(res, "Username already used");
+    if (checkUser) {
+      return responseHandler.badRequest(res, "User already exist");
+    }
 
     const user = new userModel();
     user.displayName = displayName;
@@ -23,13 +24,16 @@ const signup = async (req, res) => {
       { expiresIn: "24h" }
     );
 
+    let userObj = user._doc;
+    delete userObj.password, delete userObj.salt;
+
     responseHandler.created(res, {
       token,
-      ...user._doc,
+      ...userObj,
       id: user.id,
     });
   } catch (error) {
-    return responseHandler.error(res);
+    responseHandler.error(res);
   }
 };
 
