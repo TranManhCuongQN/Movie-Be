@@ -16,7 +16,6 @@ export default mongoose.model(
       },
       mediaType: {
         type: String,
-        enum: ["movie", "tv"],
         required: true,
       },
       mediaId: {

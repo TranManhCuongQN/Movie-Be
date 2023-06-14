@@ -24,7 +24,6 @@ router.post(
   body("mediaType")
     .exists()
     .withMessage("mediaType is required")
-    .custom((type) => ["movies", "tv"].includes(type))
     .withMessage("mediaType must be movies or tv"),
   body("mediaTitle").exists().withMessage("mediaTitle is required"),
   body("mediaPoster").exists().withMessage("mediaPoster is required"),
