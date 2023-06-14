@@ -90,9 +90,8 @@ const getDetail = async (req, res) => {
       .populate("user")
       .sort("-createdAt");
 
-    responseHandler.ok(res, media);
+    responseHandler.OK(res, media);
   } catch (e) {
-    console.log(e);
     responseHandler.error(res);
   }
 };
